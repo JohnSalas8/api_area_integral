@@ -21,6 +21,7 @@ class SimpsonRule:
         vjson['a'] = a
         vjson['b'] = b
         vjson['exp'] = exp
+        
         if n==None:
             n = int((b-a)/h)
         if h==None:
