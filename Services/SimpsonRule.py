@@ -3,7 +3,6 @@ import json
 
 class SimpsonRule:
     def __init__(self):
-        self.expression = ''
         self.f_xi = []
 
     def get_integral(self, a, b, exp, n=None, h=None):
