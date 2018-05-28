@@ -10,13 +10,13 @@ api = Api(app)
 @app.route('/simpson/<a>/<b>/<exp>/<n>/<h>')
 def simpson(a, b, exp, n, h):
     return SimpsonRule().get_integral(
-        a, b, exp, n, h
+        float(a), float(b), exp, int(n), float(h)
     )
 
 @app.route('/trapecio/<a>/<b>/<exp>/<n>/<h>')
 def trapecio(a, b, exp, n, h):
     return TrapecioRule().get_integral(
-        a, b, exp, n, h
+        float(a), float(b), exp, int(n), float(h)
     )
 
 @app.route('/')
