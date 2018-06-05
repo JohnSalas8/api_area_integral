@@ -10,23 +10,29 @@ api = Api(app)
 @app.route('/simpson/<a>/<b>/<exp>/<n>/<h>')
 def simpson(a, b, exp, n, h):
     if n=='None':
-        n = None
+        return SimpsonRule().get_integral(
+            float(a), float(b), exp, None, float(h)
+        )
     if h=='None':
-        h = None
-    return SimpsonRule().get_integral(
-        float(a), float(b), exp, int(n), float(h)
-    )
+        return SimpsonRule().get_integral(
+            float(a), float(b), exp, int(n), None
+        )
+    
+    return ''
 
 # http://localhost:2511/1/3/x**3-x+1/None/0.5
 @app.route('/trapecio/<a>/<b>/<exp>/<n>/<h>')
 def trapecio(a, b, exp, n, h):
     if n=='None':
-        n = None
+        return TrapecioRule().get_integral(
+            float(a), float(b), exp, None, float(h)
+        )
     if h=='None':
-        h = None
-    return TrapecioRule().get_integral(
-        float(a), float(b), exp, int(n), float(h)
-    )
+        return TrapecioRule().get_integral(
+            float(a), float(b), exp, int(n), None
+        )
+    
+    return ''
 
 @app.route('/')
 def index():
