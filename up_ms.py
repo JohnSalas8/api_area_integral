@@ -6,15 +6,24 @@ from Services.TrapecioRule import TrapecioRule
 app = Flask(__name__)
 api = Api(app)
 
-# http://localhost:2511/
+# http://localhost:2511/1/3/x**3-x+1/None/0.5
 @app.route('/simpson/<a>/<b>/<exp>/<n>/<h>')
 def simpson(a, b, exp, n, h):
+    if n=='None':
+        n = None
+    if h=='None':
+        h = None
     return SimpsonRule().get_integral(
         float(a), float(b), exp, int(n), float(h)
     )
 
+# http://localhost:2511/1/3/x**3-x+1/None/0.5
 @app.route('/trapecio/<a>/<b>/<exp>/<n>/<h>')
 def trapecio(a, b, exp, n, h):
+    if n=='None':
+        n = None
+    if h=='None':
+        h = None
     return TrapecioRule().get_integral(
         float(a), float(b), exp, int(n), float(h)
     )
