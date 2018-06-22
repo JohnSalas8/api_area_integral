@@ -1,5 +1,4 @@
 import math
-import json
 
 class SimpsonRule:
     def __init__(self):
@@ -32,17 +31,17 @@ class SimpsonRule:
 
         expression = exp.replace(' ','')
         
-        vjson['f(X_n)'] = ''
+        vjson['f(X_n)'] = []
 
         x = a
         for i in range(0, n+1):
             new_exp = expression.replace('x', '('+str(x)+')')
             self.f_xi.append(eval(new_exp))
-            vjson['f(X_n)'] += 'f(X_'+str(i)+') =' + new_exp + '=' + str(self.f_xi[i]) + '\n'
+            vjson['f(X_n)'].append('f(X_'+str(i)+') =' + new_exp + '=' + str(self.f_xi[i]))
             x += h
 
         I = 0
-        vjson['I'] = ''
+        vjson['I'] = '('+ str(h) + '/3)('
         for i in range(0, len(self.f_xi)):
             if i==0 or i==(len(self.f_xi)-1):
                 I += self.f_xi[i]
@@ -53,11 +52,11 @@ class SimpsonRule:
             else:
                 I += 2*self.f_xi[i]
                 vjson['I'] += '+ 2 * ' + str(self.f_xi[i]) + ' '
-        vjson['I'] += '= ' + str(h) + ' * ' + str(I) + ' '
+        vjson['I'] += ') = (' + str(h) + '/3) * ' + str(I) + ' '
         I = I*(h/3)
-        vjson['I'] += '/3 = ' + str(I)
+        vjson['I'] += ' = ' + str(I)
 
-        return json.dumps(vjson, indent=4)
+        return vjson
 
 if __name__ == '__main__':
     print SimpsonRule().get_integral(
