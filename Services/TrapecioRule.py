@@ -1,5 +1,5 @@
 import math
-import json
+import ExpMath
 
 class TrapecioRule:
     def __init__(self, *args):
@@ -31,6 +31,9 @@ class TrapecioRule:
         vjson['h'] = h
 
         expression = exp.replace(' ','')
+
+        for i in ExpMath.exp_math:
+            expression = expression.replace(i[0] , i[1])
 
         vjson['f(X_n)'] = []
         

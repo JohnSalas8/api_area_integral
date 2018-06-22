@@ -1,4 +1,5 @@
 import math
+import ExpMath
 
 class SimpsonRule:
     def __init__(self):
@@ -30,6 +31,9 @@ class SimpsonRule:
         vjson['h'] = h
 
         expression = exp.replace(' ','')
+
+        for i in ExpMath.exp_math:
+            expression = expression.replace(i[0] , i[1])
         
         vjson['f(X_n)'] = []
 
